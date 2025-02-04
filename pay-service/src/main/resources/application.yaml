@@ -1,0 +1,51 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: pay-service #微服务名字
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://${hm.db.host}:3306/hm-pay?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: ${hm.db.pw}
+  cloud:
+    nacos:
+      server-addr:
+mybatis-plus:
+  configuration:
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+  global-config:
+    db-config:
+      update-strategy: not_null
+      id-type: auto
+logging:
+  level:
+    com.qiu: debug
+  pattern:
+    dateformat: HH:mm:ss:SSS
+  file:
+    path: "logs/${spring.application.name}"
+knife4j:
+  enable: true
+  openapi:
+    title: QQ支付服务接口文档
+    description: "QQ支付服务接口文档"
+    email: zhanghuyi@itcast.cn
+    concat: 豪哥
+    url: https://www.itcast.cn
+    version: v1.0.0
+    group:
+      default:
+        group-name: default
+        api-rule: package
+        api-rule-resources:
+          - com.qiu.pay.controller
+
+#用默认feign
+#feign:
+#  okhttp:
+#    enabled: true
+
+# keytool -genkeypair -alias hmall -keyalg RSA -keypass hmall123 -keystore hmall.jks -storepass hmall123
