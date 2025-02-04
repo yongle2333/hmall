@@ -1,0 +1,5 @@
+hm:
+  db:
+    # 容器名
+    host: mysql
+    pw: 123
