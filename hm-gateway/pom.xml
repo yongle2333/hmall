@@ -10,14 +10,13 @@
     </parent>
 
     <groupId>com.qiu</groupId>
-    <artifactId>cart-service</artifactId>
+    <artifactId>hm-gateway</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
     <dependencies>
         <!--common-->
         <dependency>
@@ -25,39 +24,20 @@
             <artifactId>hm-common</artifactId>
             <version>1.0.0</version>
         </dependency>
-        <!--web-->
+        <!--网关-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-
-        <!--数据库-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <!--mybatis-->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
-        <!--nacos 服务注册发现-->
+        <!--nacos discovery-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-
-        <!--OK http 的依赖 -->
+        <!--负载均衡-->
         <dependency>
-            <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-okhttp</artifactId>
-        </dependency>
-
-        <!--hm-api-->
-        <dependency>
-            <groupId>com.qiu</groupId>
-            <artifactId>hm-api</artifactId>
-            <version>1.0.0</version>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
         <!--nacos配置管理-->
         <dependency>
@@ -70,7 +50,6 @@
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
     </dependencies>
-
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>

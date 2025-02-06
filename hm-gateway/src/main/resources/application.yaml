@@ -1,0 +1,46 @@
+server:
+  port: 8080
+#spring:
+#  application:
+#    name: gateway
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 192.168.220.142:8848
+#    gateway:
+#      routes:
+#        - id: item-service #尽量用微服务的名字
+#          uri: lb://item-service
+#          predicates:     #这里用的是，先写名字，=后写参数
+#            - Path=/items/**,/search/**   #多个controller建议这样配置
+#        - id: user-service
+#          uri: lb://user-service
+#          predicates:
+#            - Path=/addresses/**,/users/**
+#        - id: trade-service
+#          uri: lb://trade-service
+#          predicates:
+#            - Path=/orders/**
+#        - id: pay-service
+#          uri: lb://pay-service
+#          predicates:
+#            - Path=pay-orders/**
+#        - id: cart-service
+#          uri: lb://cart-service
+#          predicates:
+#            - Path=/carts/**
+
+      #default-filters: 默认过滤器，所有路由都适用
+hm:
+  jwt:
+    location: classpath:hmall.jks
+    alias: hmall
+    password: hmall123
+    tokenTTL: 30m
+  auth:
+    excludePaths:   #排除校验,用spring中的AntPathMatcher的Bean（特殊用法）
+      - /search/**
+      - /users/login
+      - /items/**
+      - /hi
+
