@@ -1,9 +1,11 @@
 package com.qiu.api.config;
 
+import com.qiu.api.client.fallback.ItemClientFallbackFactory;
 import com.qiu.common.utils.UserContext;
 import feign.Logger;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
+import org.bouncycastle.pqc.crypto.newhope.NHOtherInfoGenerator;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -31,5 +33,10 @@ public class DefaultFeignConfig {
 
             }
         };
+    }
+
+    @Bean
+    public ItemClientFallbackFactory itemClientFallbackFactory(){
+        return new ItemClientFallbackFactory();
     }
 }

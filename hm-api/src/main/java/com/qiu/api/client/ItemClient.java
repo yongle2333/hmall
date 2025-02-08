@@ -1,6 +1,7 @@
 package com.qiu.api.client;
 
 
+import com.qiu.api.client.fallback.ItemClientFallbackFactory;
 import com.qiu.api.dto.ItemDTO;
 import com.qiu.api.dto.OrderDetailDTO;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -13,7 +14,7 @@ import java.util.List;
  * @author qiu
  * @version 1.0
  */
-@FeignClient("item-service")
+@FeignClient(value = "item-service",fallbackFactory = ItemClientFallbackFactory.class)
 public interface ItemClient {
 
     @GetMapping("/items")
