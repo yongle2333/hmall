@@ -6,3 +6,10 @@ hm:
   swagger:
     title: "QQ商城交易服务接口文档"
     package: com.qiu.trade.controller
+spring:
+  rabbitmq:
+    host:
+    port: 5672
+    virtual-host: /hmall
+    password: 123
+    username: hmall
