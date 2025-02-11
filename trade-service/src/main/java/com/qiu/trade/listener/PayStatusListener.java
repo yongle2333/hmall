@@ -1,5 +1,6 @@
 package com.qiu.trade.listener;
 
+import com.qiu.trade.domain.po.Order;
 import com.qiu.trade.service.IOrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.Exchange;
@@ -25,6 +26,13 @@ public class PayStatusListener {
 
     ))
     public void listenPaySuccess(Long orderId){
+        //查询订单
+        Order order = orderService.getById(orderId);
+        //判断订单状态是否为未支付
+        if(order == null || order.getStatus() != 1){
+            return;
+        }
+        //标记订单已支付
         orderService.markOrderPaySuccess(orderId);
     }
 

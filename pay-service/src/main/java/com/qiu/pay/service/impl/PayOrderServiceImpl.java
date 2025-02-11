@@ -47,7 +47,7 @@ public class PayOrderServiceImpl extends ServiceImpl<PayOrderMapper, PayOrder> i
     //使用openFeign同步调用
     //private final TradeClient tradeClient;
 
-    //使用openFeign异步调用
+    //使用rabbitMQ异步调用
     private final RabbitTemplate rabbitTemplate;
 
     @Override
@@ -78,7 +78,7 @@ public class PayOrderServiceImpl extends ServiceImpl<PayOrderMapper, PayOrder> i
         // 5.修改订单状态
         //tradeClient.markOrderPaySuccess(po.getBizOrderNo());    //这个是基于openFeign的远程同步调用
 
-        //改造成基于rabbitMQ的异步调用
+        //******改造成基于rabbitMQ的异步调用******
         try {
             rabbitTemplate.convertAndSend("pay.direct","pay.success",po.getBizOrderNo());
         } catch (Exception e) {
