@@ -3,11 +3,13 @@ package com.qiu.api.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
 @ApiModel(description = "订单明细条目")
 @Data
 @Accessors(chain = true)
+@RequiredArgsConstructor
 public class OrderDetailDTO {
     @ApiModelProperty("商品id")
     private Long itemId;

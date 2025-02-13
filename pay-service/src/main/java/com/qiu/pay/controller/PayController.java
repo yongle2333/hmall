@@ -1,8 +1,10 @@
 package com.qiu.pay.controller;
 
+import com.qiu.api.dto.PayOrderDTO;
 import com.qiu.common.exception.BizIllegalException;
 import com.qiu.common.utils.BeanUtils;
 import com.qiu.pay.domain.dto.PayOrderFormDTO;
+import com.qiu.pay.domain.po.PayOrder;
 import com.qiu.pay.domain.vo.PayOrderVO;
 import com.qiu.pay.enums.PayType;
 import com.qiu.pay.service.IPayOrderService;
@@ -46,4 +48,12 @@ public class PayController {
     public List<PayOrderVO> queryPayOrders(){
         return BeanUtils.copyList(payOrderService.list(), PayOrderVO.class);
     }
+
+    @ApiOperation("根据id查询支付单")
+    @GetMapping("/biz/{id}")
+    public PayOrderDTO queryPayOrderByBizOrderNo(@PathVariable("id") Long id){
+        PayOrder payOrder = payOrderService.lambdaQuery().eq(PayOrder::getBizOrderNo, id).one();
+        return BeanUtils.copyBean(payOrder, PayOrderDTO.class);
+    }
+
 }

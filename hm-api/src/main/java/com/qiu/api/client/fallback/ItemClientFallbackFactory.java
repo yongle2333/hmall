@@ -6,6 +6,7 @@ import com.qiu.api.dto.OrderDetailDTO;
 import com.qiu.common.utils.CollUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;
+import org.springframework.remoting.RemoteInvocationFailureException;
 
 import java.util.Collection;
 import java.util.List;
@@ -31,6 +32,8 @@ public class ItemClientFallbackFactory implements FallbackFactory<ItemClient> {
                 log.error("扣减商品库存失败！",cause);
                 throw new RuntimeException(cause);
             }
+
+
         };
     }
 }
